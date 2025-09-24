@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { registerHost } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -8,6 +9,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,11 +17,15 @@ export default function Register() {
 
     try {
       const res = await registerHost({ name, email, password });
-      alert(res.data.message || "Registration successful!");
-      setName("");
-      setEmail("");
-      setPassword("");
-      navigate("/login"); // redirect to login after successful registration
+
+      // Automatically log in the user
+      login(
+        { id: res.data.id, name: res.data.name, email: res.data.email },
+        res.data.token
+      );
+
+      alert("Registration successful!");
+      navigate("/sessions"); // redirect to sessions page
     } catch (err) {
       console.error(err.response?.data);
       alert(err.response?.data?.message || "Registration failed");
@@ -29,7 +35,8 @@ export default function Register() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ maxWidth: "400px", margin: "auto" }}>
+      <h2>Register</h2>
       <input
         type="text"
         value={name}

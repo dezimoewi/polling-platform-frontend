@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { loginHost } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,10 +16,15 @@ export default function Login() {
 
     try {
       const res = await loginHost({ email, password });
-      alert(res.data.message || "Login successful!");
-      // store token or user info if backend provides one
-      // localStorage.setItem("token", res.data.token);
-      navigate("/dashboard"); // redirect after login
+
+      // Store token and user in context/localStorage
+      login(
+        { id: res.data.id, name: res.data.name, email: res.data.email },
+        res.data.token
+      );
+
+      alert("Login successful!");
+      navigate("/sessions"); // redirect after login
     } catch (err) {
       console.error(err.response?.data);
       alert(err.response?.data?.message || "Login failed");
@@ -27,7 +34,8 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ maxWidth: "400px", margin: "auto" }}>
+      <h2>Login</h2>
       <input
         type="email"
         value={email}
