@@ -17,9 +17,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./components/landing";
 
 // your pages
-import Login from "./pages/login";
-import Register from "./pages/Register";
-import Sessions from "./pages/Sessions";
+import Login from './pages/login'
+import Register from './pages/Register'
+import Sessions from './pages/Sessions'
+import SessionDetail from './pages/SessionDetailPage';
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -32,6 +33,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/sessions" element={<Sessions />} />
+          <Route path="/sessions/:code" element={<SessionDetail />} />
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>
