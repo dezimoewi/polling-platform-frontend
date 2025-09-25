@@ -19,7 +19,7 @@ body {
   align-items: center;
   padding: 15px 40px;
   background: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -102,7 +102,7 @@ body {
   background: #fff;
   padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .feature-card h4 {
@@ -180,4 +180,48 @@ body {
   .feature-card {
     padding: 18px;
   }
+}
+
+/* register styling */
+
+.section-one {
+  background-color: #39393a;
+  width: 60%;
+  display: flex;
+  margin-top: 32px;
+  padding: 32px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #121213f8;
+  height: 60vh;
+  padding: 16px;
+  width: 40%;
+  border-radius: 12px;
+}
+
+form input {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  /* width: 95%; */
+}
+
+form h2 {
+  color: #2563eb;
+}
+
+form button {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  /* width: 100%; */
+  background-color: #2563eb;
+  font-size: 16px;
+  color: #ffffff;
 }
