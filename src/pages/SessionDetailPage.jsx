@@ -76,7 +76,7 @@ export default function SessionDetailPage() {
   };
 
   return (
-    <div>
+    <div className="section-two">
       <h2>Session {sessionCode}</h2>
 
       <section>

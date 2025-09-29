@@ -75,7 +75,7 @@ export default function Sessions() {
 
 
   return (
-    <div>
+    <div className="section-three">
       <h2>My Sessions</h2>
 
       <input
