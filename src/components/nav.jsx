@@ -7,12 +7,28 @@ function Navbar() {
       <h1 className="logo">PollingApp</h1>
       <nav>
         <ul className="nav-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/register">Register</Link></li>
-          <li><Link to="/join">Join Session</Link></li>
+          <li>
+            <Link to="/SessionDetail">SessionDetail</Link>
+          </li>
+          <li>
+            <Link to="/WaitingPage">WaitingPage</Link>
+          </li>
+          <li>
+            <Link to="/ResultsPage">ResultsPage</Link>
+          </li>
+          <li>
+            <Link to="/sessions">Sessions</Link>
+          </li>
+
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
+          <li>
+            <Link to="/join">Join Session</Link>
+          </li>
         </ul>
       </nav>
       <div className="hamburger-icon">
