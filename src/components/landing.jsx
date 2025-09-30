@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Navbar from "./nav";
 
 export default function LandingPage() {
+  const { user } = useContext(AuthContext); // ✅ get logged-in user
+
   return (
     <div className="landing-container">
       {/* Navbar */}
