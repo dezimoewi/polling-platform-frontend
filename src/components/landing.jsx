@@ -53,7 +53,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from './nav';
+import Navbar from './Nav.jsx';
 
 export default function LandingPage() {
   return (

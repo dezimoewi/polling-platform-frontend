@@ -92,11 +92,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { SessionProvider } from "./context/SessionContext";
 
-// Pages
-
-
-// import LandingPage from "./components/landing";
-// import Login from "./pages/Login";
 import Login from "./pages/login"
 import Register from "./pages/Register";
 import Sessions from "./pages/Sessions";
@@ -105,9 +100,9 @@ import JoinSessionPage from "./pages/JoinSessionPage";
 import ParticipantPage from "./pages/ParticipantPage";
 import WaitingPage from "./pages/WaitingPage";
 import ResultsPage from "./pages/ResultsPage";
-// import Login from './pages/login';
+
 import LandingPage from './components/landing';
-// import { LandingPage } from '.';
+
 
 function App() {
   return (

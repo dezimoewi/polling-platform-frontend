@@ -480,7 +480,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSocket } from "../context/SessionContext";
-import Navbar from "../components/nav";
+import Navbar from "../components/Nav.jsx";
+import Modal from "../components/Modal.jsx";
 
 export default function ParticipantPage() {
   const { sessionCode } = useParams();
@@ -490,6 +491,10 @@ export default function ParticipantPage() {
   const [polls, setPolls] = useState([]);
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(true);
+
+  // Modal + post action (navigate after success)
+  const [modalMessage, setModalMessage] = useState(null);
+  const [postAction, setPostAction] = useState(null);
 
   // Join session and listen for poll updates
   useEffect(() => {
@@ -520,7 +525,7 @@ export default function ParticipantPage() {
         setPolls(Array.isArray(res.data.polls) ? res.data.polls : []);
       } catch (err) {
         console.error("Error fetching polls:", err);
-        alert("Error fetching polls");
+        setModalMessage("Error fetching polls");
       } finally {
         setLoading(false);
       }
@@ -548,13 +553,13 @@ export default function ParticipantPage() {
         .filter(Boolean);
 
       if (!formattedResponses.length) {
-        alert("❌ Please answer at least one poll!");
+        setModalMessage("❌ Please answer at least one poll!");
         return;
       }
 
       const email = localStorage.getItem("participantEmail");
       if (!email) {
-        alert("❌ Participant email missing. Please join session again.");
+        setModalMessage("❌ Participant email missing. Please join session again.");
         return;
       }
 
@@ -566,11 +571,12 @@ export default function ParticipantPage() {
       // Notify host that participant submitted
       socket.emit("participantSubmitted", { sessionCode, email });
 
-      // Navigate to waiting page
-      navigate(`/waiting/${sessionCode}`);
+      // Navigate to waiting page AFTER user confirms the modal
+      setPostAction(() => () => navigate(`/waiting/${sessionCode}`));
+      setModalMessage("✅ Responses submitted! Redirecting to waiting room...");
     } catch (err) {
       console.error(err.response?.data || err);
-      alert(err.response?.data?.message || "Error submitting responses");
+      setModalMessage(err.response?.data?.message || "Error submitting responses");
     }
   };
 
@@ -628,6 +634,18 @@ export default function ParticipantPage() {
       ))}
 
       <button onClick={handleSubmit}>Submit Answers</button>
+
+      <Modal
+        message={modalMessage}
+        onClose={() => {
+          if (postAction) {
+            postAction();
+            setPostAction(null);
+          }
+          setModalMessage(null);
+        }}
+        variant={modalMessage && modalMessage.startsWith("✅") ? "success" : "error"}
+      />
     </div>
   );
 }

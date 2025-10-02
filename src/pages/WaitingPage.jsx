@@ -110,7 +110,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSocket } from "../context/SessionContext";
-import Navbar from "../components/nav";
+import Navbar from "../components/Nav.jsx";
 
 export default function WaitingPage() {
   const navigate = useNavigate();

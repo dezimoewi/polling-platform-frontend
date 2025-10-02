@@ -115,7 +115,7 @@ import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useSocket } from "../context/SessionContext";
 import { AuthContext } from "../context/AuthContext";
-import Navbar from "../components/nav";
+import Navbar from "../components/Nav.jsx";
 
 export default function ResultsPage() {
   const { sessionCode } = useParams();

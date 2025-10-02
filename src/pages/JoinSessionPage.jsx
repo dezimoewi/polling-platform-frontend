@@ -162,8 +162,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Navbar from "../components/nav";
+import Navbar from "../components/Nav.jsx";
 import { useSession } from "../context/SessionContext";
+import Modal from "../components/Modal.jsx";
 
 export default function JoinSessionPage() {
   const [sessionCodeInput, setSessionCodeInput] = useState("");
@@ -174,8 +175,12 @@ export default function JoinSessionPage() {
   const navigate = useNavigate();
   const { setSessionCode, setParticipant } = useSession();
 
+  // Modal state + optional post-action
+  const [modalMessage, setModalMessage] = useState(null);
+  const [postAction, setPostAction] = useState(null);
+
   const handleJoin = async () => {
-    if (!sessionCodeInput || !name || !email) return alert("Fill all fields");
+    if (!sessionCodeInput || !name || !email) return setModalMessage("Fill all fields");
 
     try {
       setLoading(true);
@@ -190,10 +195,14 @@ export default function JoinSessionPage() {
       localStorage.setItem("participantName", name);
       localStorage.setItem("participantEmail", email);
 
-      navigate(`/participant/${sessionCodeInput}`);
+      // Instead of navigating immediately, show modal and navigate after user clicks OK
+      setPostAction(() => () => {
+        navigate(`/participant/${sessionCodeInput}`);
+      });
+      setModalMessage("✅ Joined session!");
     } catch (err) {
       console.error(err);
-      alert(err.response?.data?.message || "Error joining session");
+      setModalMessage(err.response?.data?.message || "Error joining session");
     } finally {
       setLoading(false);
     }
@@ -214,6 +223,20 @@ export default function JoinSessionPage() {
       <button onClick={handleJoin} disabled={loading}>
         {loading ? "Joining..." : "Join Session"}
       </button>
+
+      <Modal
+        message={modalMessage}
+        onClose={() => {
+          // run post action if present
+          if (postAction) {
+            postAction();
+            setPostAction(null);
+          }
+          setModalMessage(null);
+        }}
+        variant={modalMessage && modalMessage.startsWith("✅") ? "success" : "error"}
+      />
     </div>
   );
 }
+
