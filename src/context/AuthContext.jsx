@@ -1,4 +1,7 @@
-// import { createContext, useState, useEffect } from "react";
+
+
+
+// import { createContext, useState, useEffect, useContext } from "react";
 
 // export const AuthContext = createContext();
 
@@ -6,7 +9,6 @@
 //   const [user, setUser] = useState(null);
 //   const [token, setToken] = useState(null);
 
-//   // Load token from localStorage on app start
 //   useEffect(() => {
 //     const savedToken = localStorage.getItem("token");
 //     const savedUser = JSON.parse(localStorage.getItem("user"));
@@ -37,9 +39,13 @@
 //   );
 // };
 
+// // ✅ Add this at the bottom to fix the 401 & import error
+// export const useAuth = () => useContext(AuthContext);
 
 
-import { createContext, useState, useEffect, useContext } from "react";
+
+// src/context/AuthContext.jsx
+import { createContext, useContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
@@ -77,5 +83,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// ✅ Add this at the bottom to fix the 401 & import error
+// Hook to use Auth context
 export const useAuth = () => useContext(AuthContext);
