@@ -75,7 +75,7 @@ export default function LandingPage() {
 
       {/* Features Section */}
       <section id="features" className="features">
-        <h3>Why Choose Pollify?</h3>
+        <h3>Why Choose PollingApp?</h3>
         <div className="feature-grid">
           <div className="feature-card">
             <h4>Easy to Use</h4>
@@ -94,7 +94,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="footer">
-        <p>&copy; {new Date().getFullYear()} Pollify. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} PollingApp. All rights reserved.</p>
       </footer>
     </div>
   );
