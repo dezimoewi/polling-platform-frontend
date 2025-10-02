@@ -33,7 +33,6 @@ export default function SessionDetailPage() {
   const [options, setOptions] = useState([{ text: "" }, { text: "" }]);
   const [loading, setLoading] = useState(false);
 
-  // Modal state
   const [modalMessage, setModalMessage] = useState(null);
   const [confirmAction, setConfirmAction] = useState(null);
 
@@ -84,14 +83,15 @@ export default function SessionDetailPage() {
         prev.map((p) => (p.id === updatedPoll.id ? updatedPoll : p))
       )
     );
-    socket.on("participantSubmitted", () => {
-      fetchResults();
+
+    socket.on("newResponse", (response) => {
+      setResults((prev) => [...prev, response]);
     });
 
     return () => {
       socket.off("pollCreated");
       socket.off("pollUpdated");
-      socket.off("participantSubmitted");
+      socket.off("newResponse");
     };
   }, [socket, sessionCode]);
 
@@ -146,6 +146,19 @@ export default function SessionDetailPage() {
     const newOptions = [...options];
     newOptions[idx].text = value;
     setOptions(newOptions);
+  };
+
+  // ✅ Helper to render answers properly
+  const renderAnswer = (answer) => {
+    const poll = polls.find((p) => p.id === answer.pollId);
+    if (!poll) return `❓ Unknown poll (ID ${answer.pollId})`;
+
+    if (poll.type === "open-ended") {
+      return `${poll.question}: ${answer.text}`;
+    }
+
+    const option = poll.options?.find((o) => o.id === answer.optionId);
+    return `${poll.question}: ${option ? option.text : "❓ Unknown option"}`;
   };
 
   return (
@@ -234,7 +247,9 @@ export default function SessionDetailPage() {
               <p>
                 <strong>{res.participant_email}</strong>
               </p>
-              <pre>{JSON.stringify(res.answers, null, 2)}</pre>
+              {res.answers.map((a, i) => (
+                <p key={i}>{renderAnswer(a)}</p>
+              ))}
             </div>
           ))
         )}

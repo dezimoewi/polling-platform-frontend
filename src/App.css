@@ -1167,90 +1167,61 @@ button {
   }
 }
 
-/* Page background */
 .join-session-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 40px 20px;
   min-height: 100vh;
-  background: #f9fafb;
-  font-family: "Inter", sans-serif;
-  padding: 2rem 1rem;
+  background: #f9fafb; /* soft gray */
 }
 
-/* Card */
-.join-session-card {
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  max-width: 420px;
+.join-session-page h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #111827; /* dark gray */
   text-align: center;
-  margin-top: 2rem;
 }
 
-/* Title */
-.join-session-card h2 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  color: #1e293b;
-}
-
-/* Inputs */
-.join-session-card input {
-  width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
+.join-session-page input {
+  width: 320px; /* fixed width so they’re not too long */
+  max-width: 90%; /* prevent overflow on small screens */
+  padding: 12px 14px;
+  margin: 8px 0;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 1rem;
-  transition: border 0.2s, box-shadow 0.2s;
+  font-size: 15px;
+  background: #fff;
+  transition: all 0.2s ease-in-out;
 }
 
-.join-session-card input:focus {
-  border-color: #2563eb;
+.join-session-page input:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  border-color: #2563eb; /* blue border */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
 
-/* Button */
-.join-session-card button {
-  width: 100%;
-  padding: 0.9rem;
+.join-session-page button {
+  width: 320px;
+  max-width: 90%;
+  padding: 12px 14px;
+  margin-top: 16px;
   background: #2563eb;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.2s ease-in-out;
 }
 
-.join-session-card button:hover {
-  background: #1d4ed8;
+.join-session-page button:hover:not(:disabled) {
+  background: #1e40af; /* darker blue */
 }
 
-.join-session-card button:disabled {
-  background: #93c5fd;
+.join-session-page button:disabled {
+  background: #9ca3af; /* gray */
   cursor: not-allowed;
 }
-
-/* Responsive */
-@media (max-width: 480px) {
-  .join-session-card {
-    padding: 1.5rem;
-  }
-
-  .join-session-card h2 {
-    font-size: 1.5rem;
-  }
-
-  .join-session-card input,
-  .join-session-card button {
-    font-size: 0.95rem;
-  }
-}
-
