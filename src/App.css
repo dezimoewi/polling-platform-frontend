@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #a5a6a7;
-  color: #333;
+  /* background: #a5a6a7;
+  color: #333; */
 }
 
 .landing-container {
@@ -20,6 +20,31 @@ body {
   padding: 15px 40px;
   background: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  display: flex;
+}
+
+.btn li {
+  list-style: none;
+  gap: 20px;
+  padding: 16px;
+  font-size: 16px;
+}
+
+.btn li a {
+  text-decoration: none;
+}
+
+.login {
+  border: none;
+  background-color: white;
+  color: #2563eb;
+}
+
+.signin {
+  background-color: #2563eb;
 }
 
 .logo {
@@ -204,6 +229,16 @@ body {
 }
 
 /* Register styling */
+.register-form {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  align-items: center;
+  background-color: #cccbcb00;
+  align-items: center;
+  height: 95vh;
+}
+
 .section-one {
   background-color: #39393a;
   width: 60%;
@@ -216,7 +251,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background-color: #121213f8;
+  background-color: #0808ddf8;
   height: 60vh;
   padding: 16px;
   width: 40%;
@@ -240,6 +275,20 @@ form button {
   background-color: #2563eb;
   font-size: 16px;
   color: #ffffff;
+}
+
+.register-text {
+  background-color: #2563eb;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  padding: 16px;
+}
+
+
+.register-text h2 {
+  color: white;
+  font-size: 32px;
 }
 
 /* Poll css */
@@ -482,7 +531,6 @@ li ul li {
     padding: 12px;
   }
 }
-
 
 /* /result stylings */
 
@@ -693,7 +741,7 @@ body {
 
 /* Register styling */
 .section-one {
-  background-color: #39393a;
+  background-color: #ffffff;
   width: 60%;
   display: flex;
   margin-top: 32px;
@@ -704,7 +752,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background-color: #121213f8;
+  background-color: rgba(12, 12, 12, 0.171);
   height: 60vh;
   padding: 16px;
   width: 40%;
@@ -968,6 +1016,241 @@ li ul li {
   .section-three li {
     font-size: 14px;
     padding: 12px;
+  }
+}
+
+/* session details */
+
+/* Main container */
+.session-page {
+  max-width: 800px;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", sans-serif;
+  color: #333;
+}
+
+/* Page title */
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #222;
+}
+
+/* Sections */
+.session-section {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.session-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: #444;
+  font-weight: 600;
+}
+
+/* Inputs & Select */
+.session-section input[type="text"],
+.session-section select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.session-section input:focus,
+.session-section select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin: 0.4rem 0.3rem 0 0;
+  transition: background 0.3s;
+}
+
+.btn-primary {
+  background: #007bff;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+.btn-secondary:hover {
+  background: #565e64;
+}
+
+.btn-warning {
+  background: #ffc107;
+  color: #222;
+}
+.btn-warning:hover {
+  background: #e0a800;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: #fff;
+}
+.btn-danger:hover {
+  background: #a71d2a;
+}
+
+/* Poll cards */
+.poll-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Submissions */
+.submission-card {
+  background: #f1f7ff;
+  padding: 1rem;
+  border-left: 4px solid #007bff;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.submission-card pre {
+  background: #f8f9fa;
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .session-page {
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .session-section {
+    padding: 1rem;
+  }
+
+  button {
+    width: 100%;
+    margin: 0.3rem 0;
+  }
+}
+
+/* Page background */
+.join-session-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: #f9fafb;
+  font-family: "Inter", sans-serif;
+  padding: 2rem 1rem;
+}
+
+/* Card */
+.join-session-card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Title */
+.join-session-card h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+/* Inputs */
+.join-session-card input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.join-session-card input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Button */
+.join-session-card button {
+  width: 100%;
+  padding: 0.9rem;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.join-session-card button:hover {
+  background: #1d4ed8;
+}
+
+.join-session-card button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .join-session-card {
+    padding: 1.5rem;
+  }
+
+  .join-session-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .join-session-card input,
+  .join-session-card button {
+    font-size: 0.95rem;
   }
 }
 
