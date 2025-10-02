@@ -13,3 +13,9 @@ export const getSessions = async (token) => {
     headers: { Authorization: `Bearer ${token}` },
   });
 };
+
+
+// Delete session
+export const deleteSession = (token, sessionId) =>
+  axios.delete(`${API_URL}/${sessionId}`, { headers: { Authorization: `Bearer ${token}` } });
+
