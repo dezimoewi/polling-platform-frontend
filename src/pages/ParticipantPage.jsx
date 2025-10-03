@@ -563,10 +563,16 @@ export default function ParticipantPage() {
         return;
       }
 
+      // await axios.post(
+      //   `http://localhost:5000/api/sessions/${sessionCode}/responses`,
+      //   { email, responses: formattedResponses }
+      // );
+
       await axios.post(
-        `http://localhost:5000/api/sessions/${sessionCode}/responses`,
-        { email, responses: formattedResponses }
-      );
+  `http://localhost:5000/api/sessions/${sessionCode}/responses`,
+  { participantEmail: email, responses: formattedResponses }
+);
+
 
       // Notify host that participant submitted
       socket.emit("participantSubmitted", { sessionCode, email });
